@@ -1,5 +1,5 @@
 function love.load()
-    love.window.setMode(480,600)
+    love.window.setMode(480,480)
     Object = require "classic"
     require "entity"
     require "bird"
@@ -11,7 +11,7 @@ function love.load()
 end
 
 function love.draw()
-    love.graphics.setBackgroundColor(0,65,140,1)
+    love.graphics.setBackgroundColor(0,0.65,0.93,1)
     BirdPlayer:draw()
     for i, obs in ipairs(ObstacleList) do
         obs:draw()

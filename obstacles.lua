@@ -1,21 +1,15 @@
-Obstacle = Object.extend(Object)
+Obstacle = Entity:extend()
 
-function Obstacle:new(x)
-    self.x = x
-    self.y = love.math.random(50,490)
-    self.space = 65
-    self.width = 50
-    self.vel = 55
-end
-
-function Obstacle:draw()
-    love.graphics.rectangle("line",self.x,self.y,self.width,120)
+function Obstacle:new(x,img)
+    y = love.math.random(50,250)
+    Obstacle.super.new(self,x,y,img)
+    self.width = self.img:getWidth()
+    self.height = self.img:getHeight()
 end
 
 function Obstacle:update(dt)
-    self.x = self.x - self.vel*dt
-    if self.x>(-1*self.width) then
+    self.x = self.x - 50*dt
+    if self.x<(-1*self.width) then
         self.x = love.graphics.getWidth()
-        self.y = love.math.random(50,490)
     end
 end
