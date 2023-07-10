@@ -4,6 +4,7 @@ function love.load()
     require "entity"
     require "bird"
     require "obstacles"
+    Score = 0
     BirdImg = love.graphics.newImage("/assets/images/redbird-midflap.png")
     ObstacleImg = love.graphics.newImage("/assets/images/pipe-green.png")
     BirdPlayer = Bird(75,240,BirdImg)
@@ -16,11 +17,15 @@ function love.draw()
         obs:draw()
     end
     BirdPlayer:draw()
+    love.graphics.draw(love.graphics.newText(love.graphics.getFont(),"Score: "..tostring(Score)),3,7)
 end
 
 function love.update(dt)
     BirdPlayer:update(dt)
     for i, obs in ipairs(ObstacleList) do
         obs:update(dt)
+        if obs:checkPass(BirdPlayer) then
+            Score = Score + 1
+        end
     end
 end

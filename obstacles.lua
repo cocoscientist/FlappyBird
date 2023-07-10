@@ -5,6 +5,7 @@ function Obstacle:new(x)
     self.y = love.math.random(100,290)
     self.width = 60
     self.space = 110
+    self.passed = false
 end
 
 function Obstacle:draw()
@@ -19,5 +20,18 @@ function Obstacle:update(dt)
     if self.x<(-1*self.width) then
         self.x = 660
         self.y = love.math.random(100,290)
+        self.passed = false
+    end
+end
+
+
+function Obstacle:checkPass(Bird)
+    if self.passed then
+        return false
+    elseif self.x+self.width<Bird.x then
+        self.passed = true
+        return true
+    else
+        return false
     end
 end
