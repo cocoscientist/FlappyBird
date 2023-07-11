@@ -24,6 +24,13 @@ function Obstacle:update(dt)
     end
 end
 
+function Obstacle:collision(Bird)
+    if self.passed then
+        return false
+    else
+        return not (Bird.x+Bird.width<self.x or (Bird.y>self.y and Bird.y+Bird.height<self.y+self.space))
+    end
+end
 
 function Obstacle:checkPass(Bird)
     if self.passed then
